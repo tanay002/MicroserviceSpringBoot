@@ -38,7 +38,7 @@ public class UserController {
 	}
 
 	@GetMapping(path="/users/{id}")
-	public User findById(@PathVariable Long id) throws UserNotFoundException
+	public User findById(@PathVariable Long id)
 	{
 		User user=userService.findById(id);
 		if(user==null)
@@ -50,7 +50,9 @@ public class UserController {
 	public ResponseEntity<User> createUser(@Valid @RequestBody User user)
 	{
 		User userSaved =userService.saveUser(user);
-		URI locatiion= ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(userSaved.getId())
+		URI locatiion= ServletUriComponentsBuilder.fromCurrentRequest()		
+				.path("/{id}")
+				.buildAndExpand(userSaved.getId())
 				.toUri();
 		return ResponseEntity.created(locatiion).build();
 	}
