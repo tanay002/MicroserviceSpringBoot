@@ -55,7 +55,6 @@ public class FilteringController
 
     	SimpleBeanPropertyFilter filter=SimpleBeanPropertyFilter
     			.filterOutAllExcept("firstName","lastName","mobNo","email","username");
-
     	SimpleFilterProvider filterProvider= new SimpleFilterProvider().addFilter("EmployeeFilter",filter);
     	jacksonValue.setFilters(filterProvider);
     	return jacksonValue;
