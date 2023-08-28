@@ -2,6 +2,7 @@ package com.project.controller;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
@@ -17,39 +18,43 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.project.entity.User;
 import com.project.exception.UserNotFoundException;
+import com.project.repository.UserJPARepository;
+import com.project.service.UserJPAService;
 import com.project.service.UserService;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 import jakarta.validation.Valid;
 
 @RestController()
-public class UserController {
+public class UserJPAController {
 
-	private UserService userService;
+	private UserJPAService userJPAService;
+	private UserJPARepository userJPARepository;
 
-	public UserController(UserService userService)
+	public UserJPAController(UserJPAService userJPAService,UserJPARepository userJPARepository)
 	{
-		this.userService=userService;
+		this.userJPAService=userJPAService;
+		this.userJPARepository=userJPARepository;
 	}
 
-	@GetMapping(path="/users/all")
+	@GetMapping(path="/jpa/users/all")
 	public List<User> retrieveAllUsers()
 	{
-		return userService.retrieveAllUsers();
+		return userJPAService.retrieveAllUsers();
 	}
 
-	@GetMapping(path="/users/{id}")
+	@GetMapping(path="/jpa/users/{id}")
 	public User findById(@PathVariable Integer id)
 	{
-		User user=userService.findById(id);
+		User user=userJPAService.findById(id);
 		if(user==null)
 			throw new UserNotFoundException("id"+id); 
 		return user;
 	}
-
-	@PostMapping(path="/users")
+//Issue
+	@PostMapping(path="/jpa/users")
 	public ResponseEntity<User> createUser(@Valid @RequestBody User user)
 	{
-		User userSaved =userService.saveUser(user);
+		User userSaved =userJPAService.saveUser(user);
 		URI locatiion= ServletUriComponentsBuilder.fromCurrentRequest()		
 				.path("/{id}")
 				.buildAndExpand(userSaved.getId())
@@ -57,17 +62,19 @@ public class UserController {
 		return ResponseEntity.created(locatiion).build();
 	}
 	
-	@DeleteMapping(path="users/{id}")
-	public void deleteUser(@PathVariable Long id)
+	@DeleteMapping(path="/jpa/users/{id}")
+	public void deleteUser(@PathVariable Integer id)
 	{
-		userService.deleteUser(id);	
+		userJPAService.deleteUser(id);	
 	}
 	
-	@GetMapping(path="/users/hateous/{id}")
+	@GetMapping(path="/jpa/users/hateous/{id}")
 	public EntityModel<User>  findByIdHateous(@PathVariable Integer id) throws UserNotFoundException
 	{
-		User user=userService.findById(id);
-		EntityModel<User> entityModel= EntityModel.of(user);
+		Optional<User> user=userJPARepository.findById(id);
+		if(user.isEmpty())
+		throw new UserNotFoundException("User doesn't exists");
+		EntityModel<User> entityModel= EntityModel.of(user.get());
 		WebMvcLinkBuilder link=linkTo(methodOn(this.getClass()).retrieveAllUsers());
 		entityModel.add(link.withRel("all-users"));
 		return entityModel;
