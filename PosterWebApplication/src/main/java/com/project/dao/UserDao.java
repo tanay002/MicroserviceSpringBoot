@@ -12,7 +12,7 @@ import com.project.entity.User;
 public class UserDao {
 
 	private static List<User> users=new ArrayList<User>();
-	private static Long userCount=0L;
+	private static Integer userCount=0;
 
 	static 
 	{
@@ -26,7 +26,7 @@ public class UserDao {
 		return users;
 	}
 
-	public User findById(Long id)
+	public User findById(Integer id)
 	{
 		return users.stream().filter(user->user.getId().equals(id)).findFirst().orElse(null);
 	}

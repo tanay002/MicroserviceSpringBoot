@@ -24,7 +24,7 @@ public class UserService
 	}
 
 
-	public User findById(Long id)
+	public User findById(Integer id)
 	{
 		return userDao.findById(id);
 	}
@@ -36,6 +36,6 @@ public class UserService
 	
 	public void deleteUser(Long id)
 	{
-		userDao.deleteUser(id);
+	   userDao.deleteUser(id);
 	}
 }
