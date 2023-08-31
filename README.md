@@ -15,6 +15,13 @@ Resilience4j
 
 Working URL
 
+DOCKER:
+
+IMAGES:
+
+Product-Price-Service-V2  :   tanay002/mv3-product-price-service-v2:0.0.1-SNAPSHOT
+
+
 ROUTER
 
 http://localhost:8765/product-price/productCode/LAPH12/isAvailable/true
