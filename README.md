@@ -19,7 +19,11 @@ DOCKER:
 
 IMAGES:
 
-Product-Price-Service-V2  :   tanay002/mv3-product-price-service-v2:0.0.1-SNAPSHOT
+Product-Price-Service-V2  : tanay002/mv3-product-price-service-v2:0.0.1-SNAPSHOT
+
+Named-Server : tanay002/mv3-naming-server-v2:0.0.1-SNAPSHOT
+
+ProductPrice-Calculation-V2 :
 
 
 ROUTER
