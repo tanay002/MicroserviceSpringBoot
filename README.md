@@ -15,6 +15,7 @@ Resilience4j
 
 Working URL
 
+
 DOCKER:
 
 IMAGES:
@@ -27,6 +28,10 @@ ProductPrice-Calculation-V2 : tanay002/mv3-product-price-calculation-service-v2:
 
 API Gateway : tanay002/mv3-api-gateway-v2:0.0.1-SNAPSHOT
 
+
+ZIPKIN 
+
+http://localhost:9411/zipkin
 
 ROUTER
 
