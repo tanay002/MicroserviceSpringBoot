@@ -7,8 +7,42 @@ JVM 11
 Features used is 
 
 Eureka Naming Server
-Felign 
+Feign 
 Spring Cloud Load Balance
 Spring Cloud Gateway
 Zipkin
 Resilience4j
+
+Working URL
+
+ROUTER
+
+http://localhost:8765/product-price/productCode/LAPH12/isAvailable/true
+http://localhost:8765/productprice-calculation/productCode/LAPH12/isAvailable/true/quantity/3
+http://localhost:8765/productprice-calculation-feign/productCode/LAPH12/isAvailable/true/quantity/3
+http://localhost:8765/productprice-calculation-new/productCode/LAPH12/isAvailable/true/quantity/3
+http://localhost:8765/get
+
+API GATEWAY
+
+http://localhost:8765/
+http://localhost:8765/PRODUCT-PRICE/product-price/productCode/LAPH12/isAvailable/true
+http://localhost:8765/PRODUCTPRICE-CALCULATION/productprice-calculation/productCode/LAPH12/isAvailable/true/quantity/3
+http://localhost:8765/PRODUCTPRICE-CALCULATION/productprice-calculation-feign/productCode/LAPH12/isAvailable/true/quantity/3
+
+
+Load Balancing
+
+http://localhost:8100/productprice-calculation-feign/productCode/LAPH12/isAvailable/true/quantity/3
+http://localhost:8100/productprice-calculation-feign/productCode/LAPH12/isAvailable/true/quantity/2
+
+Eureka
+
+http://localhost:8761/
+
+
+http://localhost:8100/productprice-calculation/productCode/LAPH12/isAvailable/true/quantity/2
+http://localhost:8000/product-price/productCode/LAPH12/isAvailable/true
+http://localhost:8888/product-price-calculation/default
+http://localhost:8888/product-price-calculation/qa
+http://localhost:8888/product-price-calculation/dev
