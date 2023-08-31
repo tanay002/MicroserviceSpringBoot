@@ -23,7 +23,7 @@ Product-Price-Service-V2  : tanay002/mv3-product-price-service-v2:0.0.1-SNAPSHOT
 
 Named-Server : tanay002/mv3-naming-server-v2:0.0.1-SNAPSHOT
 
-ProductPrice-Calculation-V2 :
+ProductPrice-Calculation-V2 : tanay002/mv3-product-price-calculation-service-v2:0.0.1-SNAPSHOT
 
 
 ROUTER
