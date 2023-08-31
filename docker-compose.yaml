@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  product-price:
+    image: tanay002/mv3-product-price-service-v2:0.0.1-SNAPSHOT
+    mem_limit: 700m
+    ports:
+      - "8000:8000"
+    networks:
+      - product-price-network
+      
+networks:
+  product-price-network:
