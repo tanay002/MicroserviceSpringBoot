@@ -44,8 +44,8 @@ public class ProductPriceCalculationController {
 	*/
 		 
 		 ResponseEntity<PriceCalculation>	responseEntity= 
-					restTemplate.getForEntity("http://localhost:8000/product-price/productCode/{productCode}/isAvailable/{isAvailable}", 
-							PriceCalculation.class,uriVariables);
+					restTemplate.getForEntity("http://product-price:8000/product-price/productCode/{productCode}/isAvailable/{isAvailable}", 
+							PriceCalculation.class,uriVariables);  //localhost -> product-price
 		 PriceCalculation response= responseEntity.getBody();
 	
 
