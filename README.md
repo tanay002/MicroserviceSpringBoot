@@ -69,3 +69,7 @@ http://localhost:8888/product-price-calculation/default
 http://localhost:8888/product-price-calculation/qa
 
 http://localhost:8888/product-price-calculation/dev
+
+
+For Running all these Docker Container Image download yaml file 
+and Execute Command were yaml file is located> docker-compose up 
