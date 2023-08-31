@@ -25,6 +25,8 @@ Named-Server : tanay002/mv3-naming-server-v2:0.0.1-SNAPSHOT
 
 ProductPrice-Calculation-V2 : tanay002/mv3-product-price-calculation-service-v2:0.0.1-SNAPSHOT
 
+API Gateway : tanay002/mv3-api-gateway-v2:0.0.1-SNAPSHOT
+
 
 ROUTER
 
