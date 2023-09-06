@@ -1,4 +1,8 @@
-insert into user_details(id,name,birth_date) values (1,'Deepak Verma',current_date);
+delete from user_details;
+delete from employee;
+delete from person;
+
+insert into user_details(id,name,birth_date) values (1,'Deepak_Verma',current_date);
 insert into user_details(id,name,birth_date) values (2,'Raj Gautam',current_date);
 insert into user_details(id,name,birth_date) values (3,'Rahul Singh',current_date);
 insert into user_details(id,name,birth_date) values (4,'Shubham Nigam',current_date);

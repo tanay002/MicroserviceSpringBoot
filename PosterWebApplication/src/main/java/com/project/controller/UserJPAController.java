@@ -79,4 +79,16 @@ public class UserJPAController {
 		entityModel.add(link.withRel("all-users"));
 		return entityModel;
 	}
+	
+	@GetMapping(path="/jpa/users/countUser")
+	public Long findTotalUser()
+	{
+		return userJPAService.findTotalUser();
+	}
+	
+	@GetMapping(path="/jpa/users/name/{name}")
+	public List<User> findUserByName(@PathVariable String name)
+	{
+		return userJPAService.findByName(name);
+	}
 }

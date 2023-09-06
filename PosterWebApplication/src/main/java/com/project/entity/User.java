@@ -25,7 +25,7 @@ public class User {
 	@Size(min = 3,max = 50,message = "Name should have atleast 3 characters")
 	private String name;
 	
-	@Past(message = "Only Past Date is allowed")
+	//@Past(message = "Only Past Date is allowed")
 	private LocalDate birthDate;
 	
 	public Integer getId() {

@@ -39,4 +39,14 @@ public class UserJPAService
 	{
 		userJPARepository.deleteById(id);
 	}
+	
+	public Long findTotalUser()
+	{
+		return userJPARepository.count();
+	}
+	
+	public List<User> findByName(String name)
+	{
+		return userJPARepository.findByName(name);
+	}
 }
