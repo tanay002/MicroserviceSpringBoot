@@ -7,14 +7,14 @@ import java.util.function.Predicate;
 
 import org.springframework.stereotype.Service;
 
-import com.project.model.TaskToDo;
+import com.project.entity.TaskToDo;
 
 @Service
 public class TaskToDoService {
 
 	private static List<TaskToDo> todos = new ArrayList<TaskToDo>();
 	private static int count=0;
-	static {
+/*	static {
 		todos.add(new TaskToDo(++count, "Tanay","Learn Spring Framework 6", 
 							LocalDate.now(), false ));
 		todos.add(new TaskToDo(++count, "Tanay","Learn AWS", 
@@ -25,7 +25,7 @@ public class TaskToDoService {
 				LocalDate.now().plusYears(3), false ));
 		
 	}
-	
+	*/
 	public List<TaskToDo> findByUsername(String username){
 		Predicate<? super TaskToDo> predicate = 
 				todo -> todo.getUsername().equalsIgnoreCase(username);

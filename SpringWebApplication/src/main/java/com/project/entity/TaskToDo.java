@@ -1,11 +1,20 @@
-package com.project.model;
+package com.project.entity;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
 
+@Entity
+@Table(name="task_todo")
 public class TaskToDo
 {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String username;
 	
@@ -58,6 +67,7 @@ public class TaskToDo
 		return "TaskToDo [id=" + id + ", username=" + username + ", description=" + description + ", targetDate="
 				+ targetDate + ", done=" + done + "]";
 	}
-	
+	public TaskToDo() {
+	}		
 	
 }
