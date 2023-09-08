@@ -21,10 +21,15 @@ public class TaskToDoService {
 				LocalDate.now().plusYears(2), false ));
 		todos.add(new TaskToDo(++count, "Tanay","Learn Full Stack Development", 
 				LocalDate.now().plusYears(3), false ));
+		todos.add(new TaskToDo(++count, "Rahul","React Js", 
+				LocalDate.now().plusYears(3), false ));
+		
 	}
 	
 	public List<TaskToDo> findByUsername(String username){
-		return todos;
+		Predicate<? super TaskToDo> predicate = 
+				todo -> todo.getUsername().equalsIgnoreCase(username);
+		return todos.stream().filter(predicate).toList();
 	}
 	
 	public void addTaskToDo(String username, String description, LocalDate targetDate, boolean done) {
@@ -46,4 +51,6 @@ public class TaskToDoService {
 		deleteById(todo.getId());
 		todos.add(todo);
 	}
+	
+	
 }

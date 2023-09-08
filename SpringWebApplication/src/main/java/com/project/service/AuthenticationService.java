@@ -2,10 +2,10 @@ package com.project.service;
 
 import org.springframework.stereotype.Service;
 
-@Service
+//@Service
 public class AuthenticationService 
 {
-	
+	/*
 public boolean authenticate(String username, String password) {
 		
 		boolean isValidUserName = username.equalsIgnoreCase("tanay");
@@ -13,4 +13,5 @@ public boolean authenticate(String username, String password) {
 		return isValidUserName && isValidPassword;
 	}
 
+*/
 }

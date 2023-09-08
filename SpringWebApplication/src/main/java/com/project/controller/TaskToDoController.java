@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.project.model.TaskToDo;
 import com.project.service.TaskToDoService;
@@ -30,7 +32,9 @@ public class TaskToDoController {
 		
 	@RequestMapping("taskToDoList")
 	public String listAllTodos(ModelMap model) {
-		List<TaskToDo> todos = taskToDoService.findByUsername("tanay");
+	//	String username=(String)model.getAttribute("username");
+		  String username=getLoggedInUsername(model);
+		List<TaskToDo> todos = taskToDoService.findByUsername(username);
 		model.addAttribute("todos", todos);
 		
 		return "listTaskToDo";
@@ -38,7 +42,8 @@ public class TaskToDoController {
 	
 	@RequestMapping(value="addTaskToDo", method = RequestMethod.GET)
 	public String showNewTodoPage(ModelMap model) {
-		String username = (String) model.get("username");
+		//String username = (String) model.get("username");
+		  String username=getLoggedInUsername(model);
 		TaskToDo newTaskToDo = new TaskToDo(0, username, "Default Desc", LocalDate.now().plusYears(1), false);
 		model.put("newTaskToDo", newTaskToDo);
 		return "newTaskToDo";
@@ -52,7 +57,8 @@ public class TaskToDoController {
 		{
 			return "newTaskToDo";
 		}
-		String username = (String)model.get("username");
+		//String username = (String) model.get("username");
+		  String username=getLoggedInUsername(model);
 		taskToDoService.addTaskToDo(username, taskToDo.getDescription(), 
 				taskToDo.getTargetDate(), false);
 		return "redirect:taskToDoList";
@@ -77,9 +83,16 @@ public class TaskToDoController {
 			return "todo";
 		}
 		
-		String username = (String)model.get("name");
+     String username=getLoggedInUsername(model);
 		taskToDo.setUsername(username);
 		taskToDoService.updateTodo(taskToDo);
 		return "redirect:taskToDoList";
+	}
+	
+	private String getLoggedInUsername(ModelMap model) {
+		Authentication authentication = 
+				SecurityContextHolder.getContext().getAuthentication();
+		return authentication.getName();
+
 	}
 }
